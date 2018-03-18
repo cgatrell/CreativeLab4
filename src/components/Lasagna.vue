@@ -48,9 +48,9 @@ Bake, covered, 25 minutes. Bake, uncovered, 25 minutes longer or until bubbly. L
 		
     </body>
 
-    <footer>
-      <a href="https://github.com/cgatrell/food" target="_blank">https://github.com/cgatrell/food</a>
-    </footer>
+  <footer>
+    <a href="https://github.com/cgatrell/CreativeLab4" target="_blank">GitHub</a>
+  </footer>
 
   </div>
 </template>

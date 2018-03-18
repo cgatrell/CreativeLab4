@@ -43,8 +43,8 @@
     </div>
 
   </body>
-  <footer>
-    <a href="https://github.com/cgatrell/food" target="_blank">https://github.com/cgatrell/food</a>
+    <footer>
+      <a href="https://github.com/cgatrell/CreativeLab4" target="_blank">GitHub</a>
   </footer>
 
 </nav>

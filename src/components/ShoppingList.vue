@@ -20,7 +20,11 @@
     </ul>
     
    <!-- <p id="output">Subtotal<br>$</p>-->
+    <footer>
+    <a href="https://github.com/cgatrell/CreativeLab4" target="_blank">GitHub</a>
+  </footer>
   </div>
+
 </template>
 
 <script>
@@ -189,4 +193,9 @@ body {
  .controls {
      margin-top: 20px;
  }
+ footer {
+   padding-top: 20px;
+   padding-bottom: 20px;
+   text-align: center;
+}
 </style>
