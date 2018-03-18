@@ -3,7 +3,8 @@
   <body>
     <div class="form">
       <form v-on:submit.prevent="addItem">
-        <input type="text" v-model="text"><br>
+        <input placeholder="Item Name" type="text" v-model="text"><br>
+	<input placeholder="$0.00" type="number" step="0.01" v-model="price"><br>
 	<button type="submit">Add Ingredient To List</button>
       </form>
     </div>
@@ -55,6 +56,7 @@
    data () {
      return {
        text: '',
+       price: '',
        show: 'all',
        drag: {},
      }
@@ -90,14 +92,17 @@
      addItem: function() {
        this.$store.dispatch('addItem', {
          text: this.text,
+	 price: this.price,
 	 completed: false
        });
        this.text = '';
+       this.price ='';
      },
      completeItem: function(item) {
        this.$store.dispatch('updateItem',{
          id: item.id,
          text: item.text,
+	 price: item.price,
          completed: !item.completed,
          orderChange: false,
        });
@@ -129,6 +134,7 @@
        this.$store.dispatch('updateItem',{
          id: this.drag.id,
          text: this.drag.text,
+	 price: this.drag.price,
 	 completed: this.drag.completed,
 	 orderChange: true,
 	 orderTarget: item.id

@@ -1,5 +1,6 @@
 <template>
-  <div class="todo">
+  
+  <div class="list">
     <h1>Shopping List</h1>
     <form v-on:submit.prevent="addItem">
       <input placeholder="Item Name" type="text" v-model="text">
@@ -14,13 +15,16 @@
     </div>
     <ul>
       <li v-for="item in filteredItems" draggable="true" v-on:dragstart="dragItem(item)" v-on:dragover.prevent v-on:drop="dropItem(item)">
-	<input type="checkbox" v-model="item.completed" v-on:click="completeItem(item)" /><label v-bind:class="{ completed: item.completed }">Item: {{ item.text }} Price: ${{ item.price }}</label><button v-on:click="deleteItem(item)" class="delete">X</button>
+	<input type="checkbox" v-model="item.completed" v-on:click="completeItem(item)" /><label v-bind:class="{ completed: item.completed }"> {{ item.text }}</label><div class="price" style="text-align: center;">Price<br>${{ item.price }}</div> <button v-on:click="deleteItem(item)" class="delete">X</button>
       </li>
     </ul>
+    
+   <!-- <p id="output">Subtotal<br>$</p>-->
   </div>
 </template>
 
 <script>
+ var total = 0.00;
  export default {
    name: 'ShoppingList',
    data () {
@@ -52,12 +56,18 @@
        return this.items;
      },
    },
+
    created: function() {
      this.getItems();
    },
    methods: {
      getItems: function() {
        this.$store.dispatch('getItems');
+     },
+     getTotal: function() {
+       let result = items.map(price => item.price);
+       let total = result.reduce();
+       return total;
      },
      addItem: function() {
        this.$store.dispatch('addItem', {
@@ -67,6 +77,7 @@
        });
        this.text = '';
        this.price='';
+       //getTotal();
      },
      completeItem: function(item) {
        this.$store.dispatch('updateItem',{
@@ -104,7 +115,7 @@
        this.$store.dispatch('updateItem',{
          id: this.drag.id,
          text: this.drag.text,
-	 price: this.price,
+	 price: this.drag.price,
 	 completed: this.drag.completed,
 	 orderChange: true,
 	 orderTarget: item.id
@@ -115,6 +126,14 @@
 </script>
 
 <style scoped>
+
+.list {
+     margin: auto;
+     width: 50%;
+}
+body {
+     background-color: teal;
+}
  ul {
      list-style: none;
  }
@@ -146,6 +165,11 @@
  .completed {
      text-decoration: line-through;
  }
+
+.price {
+     text-align: right;
+     float: center;
+}
 
  /* Form */
 
